@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
+import classnames from "classnames";
 
 class Clients extends Component {
     state = {
@@ -60,12 +61,26 @@ class Clients extends Component {
                         <tbody>
                             {clients.map(client => (
                                 <tr key={client.id}>
-                                    <td>
+                                    <td style={{ fontWeight: "600" }}>
                                         {client.firstName} {client.lastName}
                                     </td>
-                                    <td>{client.email}</td>
-                                    <td>
-                                        ${parseFloat(client.balance).toFixed(2)}
+                                    <td style={{ fontWeight: "600" }}>
+                                        {client.email}
+                                    </td>
+                                    <td style={{ fontWeight: "600" }}>
+                                        <span
+                                            className={classnames({
+                                                "text-danger":
+                                                    client.balance > 0,
+                                                "text-success":
+                                                    client.balance === 0
+                                            })}
+                                        >
+                                            $
+                                            {parseFloat(client.balance).toFixed(
+                                                2
+                                            )}
+                                        </span>
                                     </td>
                                     <td>
                                         <Link

@@ -8,8 +8,71 @@ import Spinner from "../layout/Spinner";
 import classnames from "classnames";
 
 class ClientDetails extends Component {
+    state = {
+        showBalanceUpdate: false,
+        balanceUpdateAmount: ""
+    };
+
+    onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+    onSubmitBalanceUpdate = e => {
+        e.preventDefault();
+        const { client, firestore } = this.props;
+        const { balanceUpdateAmount } = this.state;
+
+        // New updated balance
+        const clientUpdate = {
+            balance: parseFloat(balanceUpdateAmount)
+        };
+
+        // Update Firestore with new client balance
+        firestore.update(
+            { collection: "clients", doc: client.id },
+            clientUpdate
+        );
+    };
+
+    onDeleteClient = e => {
+        const { client, firestore, history } = this.props;
+
+        firestore
+            .delete({
+                collection: "clients",
+                doc: client.id
+            })
+            .then(() => history.push("/"));
+    };
+
     render() {
         const { client } = this.props;
+        const { showBalanceUpdate, balanceUpdateAmount } = this.state;
+        let balanceForm = "";
+        // If balanceForm will display
+        if (showBalanceUpdate) {
+            balanceForm = (
+                <form onSubmit={this.onSubmitBalanceUpdate}>
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="balanceUpdateAmount"
+                            placeholder="Add New Blance"
+                            value={balanceUpdateAmount}
+                            onChange={this.onChange}
+                        />
+                        <div className="input-group-append">
+                            <input
+                                type="submit"
+                                value="Update"
+                                className="btn btn-outline-dark"
+                            />
+                        </div>
+                    </div>
+                </form>
+            );
+        } else {
+            balanceForm = null;
+        }
 
         if (client) {
             return (
@@ -30,7 +93,10 @@ class ClientDetails extends Component {
                                 >
                                     Edit
                                 </Link>
-                                <button className="btn btn-danger">
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={this.onDeleteClient}
+                                >
                                     Delete
                                 </button>
                             </div>
@@ -66,8 +132,21 @@ class ClientDetails extends Component {
                                                 2
                                             )}
                                         </span>
+                                        <small>
+                                            <a
+                                                href="#!"
+                                                onClick={() =>
+                                                    this.setState({
+                                                        showBalanceUpdate: !showBalanceUpdate
+                                                    })
+                                                }
+                                            >
+                                                {" "}
+                                                <i className="fas fa-pencil-alt" />
+                                            </a>
+                                        </small>
                                     </h3>
-                                    {/* Balance Form */}
+                                    {balanceForm}
                                 </div>
                             </div>
                             <hr />
