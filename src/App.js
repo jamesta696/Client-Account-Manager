@@ -5,6 +5,7 @@ import store from "./store";
 import AppNavBar from "./components/layout/AppNavBar";
 import Dashboard from "./components/layout/DashBoard";
 import AddClient from "./components/clients/AddClient";
+import EditClient from "./components/clients/EditClient";
 import ClientDetails from "./components/clients/ClientDetails";
 import "./App.css";
 
@@ -22,6 +23,11 @@ class App extends Component {
                                     exact
                                     path="/client/add"
                                     component={AddClient}
+                                />
+                                <Route
+                                    exact
+                                    path="/client/edit/:id"
+                                    component={EditClient}
                                 />
                                 <Route
                                     exact

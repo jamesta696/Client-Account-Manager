@@ -104,7 +104,7 @@ class AddClient extends Component {
                                     className="form-control"
                                     name="balance"
                                     onChange={this.onChange}
-                                    value={this.state.blance}
+                                    value={this.state.balance}
                                 />
                             </div>
 
