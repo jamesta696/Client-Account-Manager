@@ -26,7 +26,14 @@ class Login extends Component {
                 email,
                 password
             })
-            .catch(error => notifyUser("Invalid Login Credentials", "error")); // notifyUser(message, messageType)
+            .catch(error => notifyUser("Invalid Login Credentials", "error")); // notifyUser(message, messageType));
+    };
+
+    onResetForm = e => {
+        this.setState({
+            email: "",
+            password: ""
+        });
     };
 
     render() {
@@ -34,7 +41,7 @@ class Login extends Component {
         return (
             <div className="row">
                 <div className="col-md-6 mx-auto">
-                    <div className="card">
+                    <div className="card loginCard">
                         <div className="card-body">
                             {message ? (
                                 <AlertMessage
@@ -49,7 +56,7 @@ class Login extends Component {
                             </h1>
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="email">Email</label>
+                                    <label htmlFor="email">Email:</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -60,7 +67,7 @@ class Login extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="password">Password</label>
+                                    <label htmlFor="password">Password:</label>
                                     <input
                                         type="password"
                                         className="form-control"
@@ -74,6 +81,12 @@ class Login extends Component {
                                     type="submit"
                                     value="Login"
                                     className="btn btn-primary btn-block"
+                                />
+                                <input
+                                    type="reset"
+                                    value="Reset"
+                                    className="btn btn-secondary btn-block"
+                                    onClick={this.onResetForm}
                                 />
                             </form>
                         </div>

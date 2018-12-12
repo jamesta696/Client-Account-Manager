@@ -49,7 +49,7 @@ class Clients extends Component {
                             </h5>
                         </div>
                     </div>
-                    <table className="table table-striped">
+                    <table className="table table-striped table-responsive">
                         <thead className="thead-inverse">
                             <tr>
                                 <th>Name</th>
@@ -85,7 +85,7 @@ class Clients extends Component {
                                     <td>
                                         <Link
                                             to={`/client/${client.id}`}
-                                            className="btn btn-secondary btn-sm"
+                                            className="btn btn-info btn-sm detailsButton"
                                         >
                                             <i className="fas fa-arrow-circle-right" />{" "}
                                             Details

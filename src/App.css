@@ -1,0 +1,53 @@
+.loginCard,
+.dashboard-styling,
+.clientDetailsCard {
+    box-shadow: 8px 5px 12px 1px rgba(0, 0, 0, 0.22);
+}
+
+.backToDash-styling {
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+.backToDash-styling:hover {
+    color: orangered;
+}
+
+.detailsButton,
+.detailsButton:hover,
+.newClient-link,
+.newClient-link:hover,
+.nav-link,
+.navbar-collapse {
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 575px) {
+    .table-responsive {
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .table-responsive {
+        display: inline-table;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .newClient-link {
+        margin: 15px 0 15px 0;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .newClient-link {
+        width: 125%;
+    }
+}

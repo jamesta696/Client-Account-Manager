@@ -79,7 +79,10 @@ class ClientDetails extends Component {
                 <div>
                     <div className="row">
                         <div className="col-md-6">
-                            <Link to="/" className="btn btn-link">
+                            <Link
+                                to="/"
+                                className="btn btn-link backToDash-styling"
+                            >
                                 <i className="fas fa-arrow-circle-left" /> Back
                                 To Dashboard
                             </Link>
@@ -103,7 +106,7 @@ class ClientDetails extends Component {
                         </div>
                     </div>
                     <hr />
-                    <div className="card">
+                    <div className="card clientDetailsCard">
                         <h3 className="card-header">
                             {client.firstName} {client.lastName}
                         </h3>

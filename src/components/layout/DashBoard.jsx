@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 const Dashboard = () => {
     return (
         <div className="row">
-            <div className="col-md-10">
+            <div className="col-md-10 dashboard-styling">
                 <Clients />
             </div>
             <div className="col-md-2">
