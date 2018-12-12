@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-//import { connect } from "react-redux";
-//import { compose } from "redux";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { firebaseConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
+import { notifyUser } from "../../actions/notifyActions";
+import AlertMessage from "../layout/AlertMessage";
 
 class Login extends Component {
     state = {
@@ -16,7 +18,7 @@ class Login extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { firebase } = this.props;
+        const { firebase, notifyUser } = this.props;
         const { email, password } = this.state;
 
         firebase
@@ -24,15 +26,22 @@ class Login extends Component {
                 email,
                 password
             })
-            .catch(error => alert("Invalid Login Credentials"));
+            .catch(error => notifyUser("Invalid Login Credentials", "error")); // notifyUser(message, messageType)
     };
 
     render() {
+        const { message, messageType } = this.props.notify;
         return (
             <div className="row">
                 <div className="col-md-6 mx-auto">
                     <div className="card">
                         <div className="card-body">
+                            {message ? (
+                                <AlertMessage
+                                    message={message}
+                                    messageType={messageType}
+                                />
+                            ) : null}
                             <h1 className="text-center pb-4 pt-3">
                                 <span className="text-primary">
                                     <i className="fas fa-lock" /> Login
@@ -79,4 +88,12 @@ Login.propTypes = {
     firebase: PropTypes.object.isRequired
 };
 
-export default firebaseConnect()(Login);
+export default compose(
+    firebaseConnect(),
+    connect(
+        (state, props) => ({
+            notify: state.notify
+        }),
+        { notifyUser }
+    )
+)(Login);
