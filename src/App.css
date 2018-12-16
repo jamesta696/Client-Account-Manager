@@ -1,6 +1,6 @@
 .loginCard,
 .dashboard-styling,
-.clientDetailsCard {
+.cardStyling {
     box-shadow: 8px 5px 12px 1px rgba(0, 0, 0, 0.22);
 }
 
@@ -19,8 +19,13 @@
 .newClient-link,
 .newClient-link:hover,
 .nav-link,
-.navbar-collapse {
+.navbar-collapse,
+.btn-group-styling {
     transition: all 0.3s ease-in-out;
+}
+
+.nav-link {
+    display: inline-block;
 }
 
 .nav-link:hover {
@@ -28,9 +33,26 @@
     transition: all 0.3s ease-in-out;
 }
 
+.clientPhone {
+    transition: all 0.3s ease-in-out;
+}
+
+.clientPhone:hover {
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    color: orangered;
+}
+
 @media screen and (max-width: 575px) {
     .table-responsive {
         display: inline-block;
+    }
+    .totalOwed-breakpoint {
+        text-align: left !important;
+    }
+
+    .balanceAmount {
+        margin-top: 5px;
     }
 }
 
@@ -43,6 +65,10 @@
 @media screen and (max-width: 768px) {
     .newClient-link {
         margin: 15px 0 15px 0;
+    }
+
+    .clientID {
+        font-size: 1rem;
     }
 }
 

@@ -41,7 +41,7 @@ class Clients extends Component {
                             </h2>
                         </div>
                         <div className="col-md-6">
-                            <h5 className="text-right text-secondary">
+                            <h5 className="text-right text-secondary totalOwed-breakpoint mt-2">
                                 Total Owed{" "}
                                 <span className="text-primary">
                                     ${parseFloat(totalOwed).toFixed(2)}

@@ -14,6 +14,6 @@ export default (state = initialState, action) => {
                 messageType: action.messageType
             };
         default:
-            return initialState;
+            return state;
     }
 };

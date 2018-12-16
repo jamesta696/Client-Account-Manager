@@ -26,14 +26,20 @@ class Login extends Component {
                 email,
                 password
             })
-            .catch(error => notifyUser("Invalid Login Credentials", "error")); // notifyUser(message, messageType));
+            .catch(error => notifyUser("Invalid Login Credentials", "error")); // notifyUser(message, messageType);
+
+        notifyUser(null, null);
     };
 
     onResetForm = e => {
+        const { notifyUser } = this.props;
+
         this.setState({
             email: "",
             password: ""
         });
+
+        notifyUser(null, null);
     };
 
     render() {
@@ -98,7 +104,9 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    firebase: PropTypes.object.isRequired
+    firebase: PropTypes.object.isRequired,
+    notify: PropTypes.object.isRequired,
+    notifyUser: PropTypes.func.isRequired
 };
 
 export default compose(

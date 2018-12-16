@@ -86,18 +86,15 @@ class ClientDetails extends Component {
                                 <i className="fas fa-arrow-circle-left" /> Back
                                 To Dashboard
                             </Link>
-                        </div>
-
-                        <div className="col-md-6">
                             <div className="btn-group float-right">
                                 <Link
                                     to={`/client/edit/${client.id}`}
-                                    className="btn btn-dark"
+                                    className="btn btn-dark btn-group-styling"
                                 >
                                     Edit
                                 </Link>
                                 <button
-                                    className="btn btn-danger"
+                                    className="btn btn-danger btn-group-styling"
                                     onClick={this.onDeleteClient}
                                 >
                                     Delete
@@ -106,14 +103,14 @@ class ClientDetails extends Component {
                         </div>
                     </div>
                     <hr />
-                    <div className="card clientDetailsCard">
+                    <div className="card cardStyling mb-4">
                         <h3 className="card-header">
                             {client.firstName} {client.lastName}
                         </h3>
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-8 col-sm-6">
-                                    <h4>
+                                    <h4 className="clientID">
                                         Client ID:{" "}
                                         <span className="text-secondary">
                                             {client.id}
@@ -121,7 +118,7 @@ class ClientDetails extends Component {
                                     </h4>
                                 </div>
                                 <div className="col-md-4 col-sm-6">
-                                    <h3 className="pull-right">
+                                    <h3 className="pull-right balanceAmount">
                                         Balance: $
                                         <span
                                             className={classnames({
@@ -155,10 +152,18 @@ class ClientDetails extends Component {
                             <hr />
                             <ul className="list-group">
                                 <li className="list-group-item">
-                                    Contact Email: {client.email}
+                                    <i class="fas fa-envelope" /> Email:{" "}
+                                    {client.email}
                                 </li>
                                 <li className="list-group-item">
-                                    Contact Phone: {client.phone}
+                                    <i class="fas fa-phone" /> Phone:{" "}
+                                    <a
+                                        href={`tel:${client.phone}`}
+                                        alt="contact phone"
+                                        className="clientPhone"
+                                    >
+                                        {client.phone}
+                                    </a>
                                 </li>
                             </ul>
                         </div>

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import PropTypes from "prop-types";
 
 class AddClient extends Component {
@@ -30,18 +32,22 @@ class AddClient extends Component {
     };
 
     render() {
+        const { disableBalanceOnAdd } = this.props.settings;
         return (
             <div>
                 <div className="row">
-                    <div className="col-md-6">
-                        <Link to="/" className="btn btn-link">
+                    <div className="col-md-6 mb-4">
+                        <Link
+                            to="/"
+                            className="btn btn-link backToDash-styling"
+                        >
                             <i className="fas fa-arrow-circle-left" /> Back To
                             Dashboard
                         </Link>
                     </div>
                 </div>
 
-                <div className="card mb-4">
+                <div className="card mb-4 cardStyling">
                     <div className="card-header">Add Client</div>
                     <div className="card-body">
                         <form onSubmit={this.onSubmit}>
@@ -105,6 +111,7 @@ class AddClient extends Component {
                                     name="balance"
                                     onChange={this.onChange}
                                     value={this.state.balance}
+                                    disabled={disableBalanceOnAdd}
                                 />
                             </div>
 
@@ -122,7 +129,13 @@ class AddClient extends Component {
 }
 
 AddClient.propTypes = {
-    firestore: PropTypes.object.isRequired
+    firestore: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired
 };
 
-export default firestoreConnect()(AddClient);
+export default compose(
+    firestoreConnect(),
+    connect((state, props) => ({
+        settings: state.settings
+    }))
+)(AddClient);
